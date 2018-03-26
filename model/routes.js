@@ -1,41 +1,43 @@
-// Dependencies
+// Dependencias
 var mongoose        = require('mongoose');
 var User            = require('./model.js');
 
-// Opens App Routes
 module.exports = function(app) {
 
-    // GET Routes
+    // GET Rutas
     // --------------------------------------------------------
-    // Retrieve records for all users in the db
+
+// Abre rutas de la aplicación
+// Recuperar registros para todos los usuarios en el archivo db
     app.get('/users', function(req, res){
 
-        // Uses Mongoose schema to run the search (empty conditions)
+        // Usa el esquema de Mongoose para ejecutar la búsqueda (condiciones de vacío)
         var query = User.find({});
         query.exec(function(err, users){
             if(err)
                 res.send(err);
 
-            // If no errors are found, it responds with a JSON of all users
+
+    // Si no se encuentran errores, responde con un JSON de todos los usuarios
             res.json(users);
         });
     });
 
-    // POST Routes
+    // POST Rutas
     // --------------------------------------------------------
-    // Provides method for saving new users in the db
+    // Proporciona un método para guardar nuevos usuarios en el archivo db
     app.post('/users', function(req, res){
 
-        // Creates a new User based on the Mongoose schema and the post bo.dy
+        // Crea un nuevo usuario basado en el esquema de Mongoose y el cuerpo de la publicación
         var newuser = new User(req.body);
 
-        // New User is saved in the db.
+        // Nuevo usuario registrado en la DB
         newuser.save(function(err){
             if(err)
                 res.send(err);
 
-            // If no errors are found, it responds with a JSON of the new user
+            // Si no se encuentran errores, responde con un JSON del nuevo usuario
             res.json(req.body);
         });
     });
-};  
+};

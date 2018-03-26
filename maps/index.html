@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- Declares meanMapApp as the starting Angular module -->
 <html class="no-js"  ng-app="AcomerYapp">
 <head>
     <meta charset="utf-8">
@@ -9,25 +8,18 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD4TWmxa8aQOSzwdhQMt2vEGaKBnvOKhA"></script>
-
-
     <style>
- #map{
-   height: 300px;
-   width:100%;
- }
+
  </style>
- <!-- Modernizr -->
-    <!-- JS Source -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="../bower_components/angular/angular.js"></script>
  <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angularjs-geolocation/dist/angularjs-geolocation.min.js"></script>
  <script src="js/app.js"></script>
  <script src="js/addCtrl.js"></script>
+ <script src="js/gservice.js"></script>
 </head>
 <body ng-controller="addCtrl">
-  <!--The content below is only a placeholder and can be replaced.-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">¡AcomerYapp!</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,20 +55,16 @@
       </form>
     </div>
   </nav>
-  <!-- this creates a google map on the page with the given lat/lng from -->
-  <!-- the component as the initial center of the map: -->
-
   <div class="container">
       <div class="header">
 
           <h3 class="text-muted">Tu ubicacion en AcomerYapp</h3>
       </div>
-      <!-- Map and Side Panel -->
       <div class="row content">
-          <!-- Google Map -->
-          <div class="col-md-7">
-            <div id="map"></div>
-       </div>
+        <!-- Google Map -->
+        <div class="col-md-7">
+          <div id="map" style="width:645px; height:645px"></div>
+        </div>
           <!-- Side Panel -->
           <div class="col-md-5">
               <div class="panel panel-default">
@@ -86,9 +74,7 @@
                   </div>
                   <!-- Panel Body -->
                   <div class="panel-body">
-                      <!-- Creates Form (novalidate disables HTML validation, Angular will control) -->
                       <form name ="addForm" novalidate >
-                          <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
                           <div class="form-group">
                               <label for="username">Nombre Administrador <span class="badge">Todos los campos son requeridos</span></label>
                               <input type="text" class="form-control" id="username" placeholder="Ingresa nombre de usuario" ng-model="formData.username" required>
@@ -98,18 +84,17 @@
                               <input type="text" class="form-control" id="language" placeholder="¡AcomerYapp!" ng-model="formData.nameRestaurant" required>
                           </div>
                           <div class="form-group">
-                            <label for="latitude">Latitude</label>
-                            <input type="text" class="form-control" id="latitude" value="49.500" ng-model="formData.latitude" readonly>
+                            <label for="latitude">Latitud</label>
+                            <input type="text" class="form-control" id="latitude" value="49.500" ng-model="formData.latitude" >
                         </div>
                         <div class="form-group">
-                            <label for="longitude">Longitude</label>
-                            <input type="text" class="form-control" id="longitude" value="-98.350" ng-model="formData.longitude" readonly>
+                            <label for="longitude">Longitud</label>
+                            <input type="text" class="form-control" id="longitude" value="-98.350" ng-model="formData.longitude">
                         </div>
                           <div class="form-group">
                            <label for="verified">HTML5 Verified Location? <span><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-refresh"></span></button></span></label>
                            <input type="text" class="form-control" id="verified" placeholder= "Nope (Thanks for spamming my map...)" ng-model="formData.htmlverified" readonly>
                        </div>
-                          <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
                            <button type="submit" class="btn btn-danger btn-block" ng-click="createUser()" ng-disabled="addForm.$invalid">Submit</button>
                       </form>
 
@@ -118,7 +103,6 @@
           </div>
       </div>
       <hr/>
-      <!-- Footer -->
       <div class="footer">
           <p class="text-center"><span class="glyphicon glyphicon-check"></span> Desarrollado por TheWolvesoft
       </div>
