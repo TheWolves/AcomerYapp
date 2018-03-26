@@ -1,20 +1,30 @@
 {
-  "name": "acomeryapp",
+  "name": "AcomerYapp",
   "version": "1.0.0",
   "description": "Aplicativo para restaurantes",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "TheWolvesoft",
   "license": "ISC",
   "dependencies": {
+    "angular-route": "^1.6.9",
     "angular2": "^2.0.0-beta.21",
+    "angularjs-geolocation": "^0.1.3",
+    "body-parser": "^1.18.2",
+    "bower-installer": "^1.3.6",
+    "bower-jquery": "^2.0.2",
     "cors": "^2.8.4",
     "ejs": "^2.5.7",
     "es6-shim": "^0.35.0",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.0",
+    "method-override": "^2.3.10",
+    "modernizr": "^3.6.0",
     "mongojs": "^2.5.0",
+    "mongoose": "^5.0.11",
+    "morgan": "^1.9.0",
     "reflect-metadata": "^0.1.2",
     "rxjs": "^5.0.0-beta.6",
     "zone.js": "^0.6.12"
