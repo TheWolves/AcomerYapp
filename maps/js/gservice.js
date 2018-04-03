@@ -5,6 +5,9 @@ angular.module('gservice', [])
 
 
         var googleMapService = {};
+        // Handling Clicks and location selection
+        googleMapService.clickLat  = 0;
+        googleMapService.clickLong = 0;
 
 
         // Matriz de ubicaciones obtenidas de llamadas API
@@ -130,6 +133,8 @@ var initialize = function(latitude, longitude) {
     lastMarker = marker;
 
 };
+
+
 
 
 // Actualiza la página al cargar la ventana. Usa la latitud y la longitud iniciales

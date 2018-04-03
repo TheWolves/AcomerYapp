@@ -14,6 +14,23 @@ addCtrl.controller('addCtrl', function($scope, $http, geolocation,  gservice){
     $scope.formData.latitude = 4.6859019;
     $scope.formData.longitude = -74.11131820000003;
 
+    // Get User's actual coordinates based on HTML5 at window load
+    geolocation.getLocation().then(function(data){
+
+    // Set the latitude and longitude equal to the HTML5 coordinates
+    coords = {lat:data.coords.latitude, long:data.coords.longitude};
+
+    // Display coordinates in location textboxes rounded to three decimal points
+    $scope.formData.longitude = parseFloat(coords.long).toFixed(3);
+    $scope.formData.latitude = parseFloat(coords.lat).toFixed(3);
+
+    // Display message confirming that the coordinates verified.
+    $scope.formData.htmlverified = "Yep (Thanks for giving us real data!)";
+
+    gservice.refresh($scope.formData.latitude, $scope.formData.longitude);
+
+});
+
 
     // Crear un nuevo restaurante  basado en el formulario
     $scope.createUser = function() {
@@ -21,8 +38,10 @@ addCtrl.controller('addCtrl', function($scope, $http, geolocation,  gservice){
 
         var userData = {
             username: $scope.formData.username,
+            email: $scope.formData.email,
+            password: $scope.formData.password,
             nameRestaurant: $scope.formData.nameRestaurant,
-            location: [$scope.formData.longitude, $scope.formData.latitude],
+            location: [parseFloat($scope.formData.longitude), parseFloat($scope.formData.latitude)],
             htmlverified: $scope.formData.htmlverified
         };
 
@@ -32,7 +51,8 @@ addCtrl.controller('addCtrl', function($scope, $http, geolocation,  gservice){
 
                 // Una vez completado, borre el formulario (excepto la ubicación)
                 $scope.formData.username = "";
-                $scope.formData.services = "";
+                $scope.formData.email = "";
+                $scope.formData.password = "";
                 $scope.formData.nameRestaurant = "";
 
                 gservice.refresh($scope.formData.latitude, $scope.formData.longitude)

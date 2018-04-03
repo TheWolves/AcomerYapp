@@ -4,6 +4,8 @@ Schema      = mongoose.Schema;
 // Creacion de un  User Schema.
 var UserSchema = new Schema({
     username: {type: String, required: true},
+    email: {type: String, required: true},
+    password: {type: String, required: true},
     nameRestaurant: {type: String, required: true},
     location: {type: [Number], required: true}, // [Long, Lat]
     htmlverified: String,
